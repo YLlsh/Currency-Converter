@@ -49,9 +49,23 @@ async function convert() {
     const rate = data.rates[to];
     const result = rate * amount;
 
-    document.getElementById("result").innerText = `Converted Amount: ${result}`;
+    let result_amount = "";
+    result_amount += `${amount}: ${from}`;
+    document.getElementById("Amount").value = result_amount;
+
+    document.getElementById("result").innerText = " loading...";
+    setTimeout(() => {
+      document.getElementById(
+        "result"
+      ).innerText = `Converted Amount: ${result} ${to}`;
+    }, 1000);
+
   } catch (error) {
     console.error("Error:", error);
     document.getElementById("result").innerText = "Conversion failed.";
   }
+}
+
+function input_remove() {
+  let input = (document.getElementById("Amount").value = "");
 }
